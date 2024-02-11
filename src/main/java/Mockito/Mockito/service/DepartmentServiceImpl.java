@@ -26,8 +26,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     public Employee findEmployeeWithMaxSalary(int departmentId) {
         return employeeService
                 .findAll().stream()
-                .filter(e -> e.getDepartmentId() == departmentId)
-                .max(comparingInt(Employee::getSalary))
+                .filter(e -> e.departmentId() == departmentId)
+                .max(comparingInt(Employee::salary))
                 .orElseThrow(EmployeeNotFoundException::new);
     }
 
@@ -35,8 +35,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     public Employee findEmployeeWithMinSalary(int departmentId) {
         return employeeService
                 .findAll().stream()
-                .filter(e -> e.getDepartmentId() == departmentId)
-                .min(comparingInt(Employee::getSalary))
+                .filter(e -> e.departmentId() == departmentId)
+                .min(comparingInt(Employee::salary))
                 .orElseThrow(EmployeeNotFoundException::new);
     }
 
@@ -44,16 +44,16 @@ public class DepartmentServiceImpl implements DepartmentService {
     public Map<Integer, List<Employee>> findEmployeesByDepartment() {
         return employeeService
                 .findAll().stream()
-                .sorted(comparing(Employee::getLastName).thenComparing(Employee::getFirstName))
-                .collect(groupingBy(Employee::getDepartmentId));
+                .sorted(comparing(Employee::lastName).thenComparing(Employee::firstName))
+                .collect(groupingBy(Employee::departmentId));
     }
 
     @Override
     public Collection<Employee> findEmployeesByDepartment(int departmentId) {
         return employeeService
                 .findAll().stream()
-                .filter(e -> e.getDepartmentId() == departmentId)
-                .sorted(comparing(Employee::getLastName).thenComparing(Employee::getFirstName))
+                .filter(e -> e.departmentId() == departmentId)
+                .sorted(comparing(Employee::lastName).thenComparing(Employee::firstName))
                 .collect(toList());
     }
 }

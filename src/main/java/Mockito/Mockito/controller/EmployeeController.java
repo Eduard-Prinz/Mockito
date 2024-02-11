@@ -42,7 +42,7 @@ public class EmployeeController {
 
     private String generateMessage(Employee employee, String status) {
         return String.format("Сотрудник %s %s %s.",
-                employee.getLastName(), employee.getFirstName(), status
+                employee.lastName(), employee.firstName(), status
         );
     }
 }

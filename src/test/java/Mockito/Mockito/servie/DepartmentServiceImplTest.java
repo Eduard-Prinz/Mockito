@@ -79,7 +79,7 @@ class DepartmentServiceImplTest {
     public void shouldReturnEmployeesByDepartmentWhenDepartmentIsCorrectAndEmployeesExistThere() {
         when(employeeService.findAll()).thenReturn(DIFFRENT_DEPARTMENT_EMPLOYEES);
         Map<Integer, List<Employee>> expected = DIFFRENT_DEPARTMENT_EMPLOYEES.stream()
-                .collect(Collectors.groupingBy(Employee::getDepartmentId));
+                .collect(Collectors.groupingBy(Employee::departmentId));
 
         assertEquals(expected, out.findEmployeesByDepartment());
     }

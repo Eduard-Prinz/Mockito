@@ -48,7 +48,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new EmployeeNotFoundException();
         }
 
-        return employees.remove(getKey(lastName, firstName));
+        return employees.remove(getKey(firstName, lastName));
     }
 
     @Override
@@ -59,7 +59,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new EmployeeNotFoundException();
         }
 
-        return employees.get(getKey(lastName, firstName));
+        return employees.get(getKey(firstName, lastName));
     }
 
     @Override
